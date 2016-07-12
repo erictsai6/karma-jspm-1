@@ -53,13 +53,20 @@ function getJspmPackageJson(dir) {
         for (var p in pjson.jspm)
             pjson[p] = pjson.jspm[p];
     }
+
     pjson.directories = pjson.directories || {};
     if (pjson.directories.baseURL) {
         if (!pjson.directories.packages)
             pjson.directories.packages = path.join(pjson.directories.baseURL, 'jspm_packages');
-        if (!pjson.configFile)
-            pjson.configFile = path.join(pjson.directories.baseURL, 'config.js');
     }
+
+    pjson.configFiles = pjson.configFiles || {};
+    if (pjson.configFiles.jspm) {
+        pjson.configFile = pjson.configFiles.jspm;
+    } else {
+        pjson.configFile = path.join(pjson.directories.baseURL, 'jspm.config.js');
+    }
+
     return pjson;
 }
 
@@ -68,7 +75,7 @@ module.exports = function(files, basePath, jspm, client, emitter) {
     if(!jspm)
         jspm = {};
     if(!jspm.config)
-        jspm.config = getJspmPackageJson(basePath).configFile || 'config.js';
+        jspm.config = getJspmPackageJson(basePath).configFile || 'jspm.config.js';
     if(!jspm.loadFiles)
         jspm.loadFiles = [];
     if(!jspm.serveFiles)
@@ -81,10 +88,27 @@ module.exports = function(files, basePath, jspm, client, emitter) {
         client.jspm.paths = jspm.paths;
     if(jspm.meta !== undefined && typeof jspm.meta === 'object')
         client.jspm.meta = jspm.meta;
-    if(!jspm.adapter)
-        jspm.adapter = __dirname + '/adapter.js';
-    else
-        jspm.adapter = path.normalize(basePath + '/' + jspm.adapter);
+
+    // Adapters
+    // -------
+
+    if(!jspm.adapter) {
+        jspm.adapter = __dirname + '/adapters/default-adapter.js';
+    } else if (jspm.adapter === 'angular2') {
+
+        if (jspm.preloadBySystemJS) {
+            client.jspm.preloadBySystemJS = jspm.preloadBySystemJS;
+        } else {
+            client.jspm.preloadBySystemJS = require('./adapters/angular2-preload-files');
+        }
+
+        jspm.adapter = __dirname + '/adapters/angular2-adapter.js';
+
+    }
+
+    if (jspm.customAdapter) {
+        jspm.adapter = path.normalize(basePath + '/' + jspm.customAdapter);
+    }
 
     // Pass on options to client
     client.jspm.useBundles = jspm.useBundles;
@@ -92,6 +116,8 @@ module.exports = function(files, basePath, jspm, client, emitter) {
 
     var packagesPath = path.normalize(basePath + '/' + jspm.packages + '/');
     var browserPath = path.normalize(basePath + '/' + jspm.browser);
+    var devPath = path.normalize(basePath + '/' + jspm.dev);
+    var nodePath = path.normalize(basePath + '/' + jspm.node);
     var configFiles = Array.isArray(jspm.config) ? jspm.config : [jspm.config];
     var configPaths = configFiles.map(function(config) {
         return path.normalize(basePath + '/' + config);
@@ -107,18 +133,34 @@ module.exports = function(files, basePath, jspm, client, emitter) {
         }
     }
 
-    Array.prototype.unshift.apply(files,
-        configPaths.map(function(configPath) {
-            return createPattern(configPath)
-        })
-    );
-
     // Needed for JSPM 0.17 beta
+    if(jspm.node) {
+        files.unshift(createPattern(nodePath));
+    }
+
+    if(jspm.dev) {
+        files.unshift(createPattern(devPath));
+    }
+
     if(jspm.browser) {
         files.unshift(createPattern(browserPath));
     }
 
+
+    Array.prototype.unshift.apply(files,
+      configPaths.map(function(configPath) {
+          return createPattern(configPath)
+      })
+    );
+
     files.unshift(createPattern(jspm.adapter));
+
+    // Coverage
+    files.unshift(createPattern(__dirname + '/coverage/hookSystemJS.js'));
+    files.unshift(createPattern(__dirname + '/coverage/instrumenter.js'));
+
+    // SystemJS
+    files.unshift(createPattern(__dirname + '/util/systemjsKarmaFix.js'));
     files.unshift(createPattern(getLoaderPath('system-polyfills.src')));
     files.unshift(createPattern(getLoaderPath('system.src')));
 
