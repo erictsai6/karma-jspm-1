@@ -128,7 +128,7 @@ describe('jspm plugin init', function(){
     });
 });
 
-xdescribe('jspm plugin init with adapter', function(){
+describe('jspm plugin init with adapter', function(){
     var files, jspm, client, emitter;
     var basePath = path.resolve(__dirname, '..');
 
@@ -151,8 +151,8 @@ xdescribe('jspm plugin init with adapter', function(){
     });
 
     it('should add custom adapter.js to the top of the files array', function(){
-        expect(normalPath(files[2].pattern)).toEqual(normalPath(basePath + '/custom_adapter.js'));
-        expect(files[2].included).toEqual(true);
+        expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/custom_adapter.js'));
+        expect(files[5].included).toEqual(true);
     });
 
 });
