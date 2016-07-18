@@ -13,8 +13,8 @@ var preprocessList = require('./coverage/preprocess-list.js');
 
 // Preprocessor creator function
 function createCoveragePreprocessor (logger, helper, basePath, reporters, coverageReporter) {
-  var _ = helper._
-  var log = logger.create('preprocessor.coverage')
+  var _ = helper._;
+  var log = logger.create('preprocessor.coverage');
 
   basePath += '/';
 
@@ -22,7 +22,7 @@ function createCoveragePreprocessor (logger, helper, basePath, reporters, covera
   // -------
 
   return function (content, file, done) {
-    log.debug('Processing "%s".', file.originalPath)
+    log.debug('Processing "%s".', file.originalPath);
     preprocessList.add(file.originalPath.replace(basePath, ''));
     done(content);
   }
@@ -34,6 +34,6 @@ createCoveragePreprocessor.$inject = [
   'config.basePath',
   'config.reporters',
   'config.coverageReporter'
-]
+];
 
-module.exports = createCoveragePreprocessor
+module.exports = createCoveragePreprocessor;

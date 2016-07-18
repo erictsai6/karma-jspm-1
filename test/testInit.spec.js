@@ -2,7 +2,7 @@
 
 var cwd = process.cwd();
 var path = require('path');
-var initJspm = require('../src/init');
+var initJspm = require('../src/framework');
 
 var normalPath = function(path){
     return path.replace(/\\/g,'/');
@@ -12,44 +12,75 @@ describe('jspm plugin init', function(){
     var files, jspm, client, emitter;
     var basePath = path.resolve(__dirname, '..');
 
+    var mockLogger = {
+        create: function() {
+            return {
+                error: function() {
+                    throw new Error(util.format.apply(util, arguments));
+                },
+                warn: function() {
+                    return null;
+                },
+                info: function() {
+                    return null;
+                },
+                debug: function() {
+                    return null;
+                }
+            };
+        }
+    };
+
+    var helper = {
+        _: require('lodash')
+    };
+
+    var File = function(path, mtime) {
+        this.path = path;
+        this.originalPath = path;
+        this.contentPath = path;
+        this.mtime = mtime;
+        return this.isUrl = false;
+    };
+
+
     beforeEach(function(){
         files = [];
         jspm = {
-            browser: 'custom_browser.js',
+            browserConfig: 'custom_browser.js',
             config: 'custom_config.js',
-            loadFiles: ['src/**/*.js',{pattern:'not-cached.js', nocache:true}, {pattern:'not-watched.js', watched:false}],
+            loadFiles: ['test/filesToLoad/loadFiles/**/*.js',{pattern:'not-cached.js', nocache:true}, {pattern:'not-watched.js', watched:false}],
             packages: 'custom_packages/',
-            serveFiles: ['testfile.js']
+            serveFiles: ['test/filesToLoad/servedFiles/fileC.js']
         };
         client = {};
         emitter = {
             on: function() {}
         };
-
         initJspm(files, basePath, jspm, client, emitter);
     });
 
     it('should add config.js to the top of the files array', function(){
-        expect(normalPath(files[4].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
-        expect(files[4].included).toEqual(true);
+        expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
+        expect(files[6].included).toEqual(true);
     });
 
     it('should add browser.js to the top of the files array', function(){
-        expect(normalPath(files[3].pattern)).toEqual(normalPath(basePath + '/custom_browser.js'));
-        expect(files[3].included).toEqual(true);
+        expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/custom_browser.js'));
+        expect(files[5].included).toEqual(true);
     });
 
     it('should support an array of config files', function() {
         jspm.config = ['custom_config.js', 'another_config.js'];
         files = [];
         initJspm(files, basePath, jspm, client, emitter);
-        expect(normalPath(files[4].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
-        expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/another_config.js'));
+        expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
+        expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/another_config.js'));
     });
 
     it('should add adapter.js to the top of the files array', function(){
-        expect(normalPath(files[2].pattern)).toEqual(normalPath(basePath + '/src/adapter.js'));
-        expect(files[2].included).toEqual(true);
+        expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/src/adapters/default-adapter.js'));
+        expect(files[5].included).toEqual(true);
     });
 
     it('should add systemjs-polyfills to the top of the files array', function(){
@@ -63,11 +94,11 @@ describe('jspm plugin init', function(){
     });
 
     it('should add files from jspm.loadFiles to client.expandedFiles', function(){
-        expect(client.jspm.expandedFiles).toEqual(['src/adapter.js', 'src/init.js']);
+        expect(client.jspm.expandedFiles).toEqual([ 'test/filesToLoad/loadFiles/fileA.js', 'test/filesToLoad/loadFiles/fileB.js' ]);
     });
 
     it('should add files from jspm.serveFiles to the files array as served files', function(){
-        expect(normalPath(files[files.length - 2].pattern)).toEqual(normalPath(cwd + '/testfile.js'));
+        expect(normalPath(files[files.length - 2].pattern)).toEqual(normalPath(cwd + '/test/filesToLoad/servedFiles/fileC.js'));
         expect(files[files.length - 2].included).toEqual(false);
         expect(files[files.length - 2].served).toEqual(true);
         expect(files[files.length - 2].watched).toEqual(true);
@@ -97,14 +128,14 @@ describe('jspm plugin init', function(){
     });
 });
 
-describe('jspm plugin init with adapter', function(){
+xdescribe('jspm plugin init with adapter', function(){
     var files, jspm, client, emitter;
     var basePath = path.resolve(__dirname, '..');
 
     beforeEach(function(){
         files = [];
         jspm = {
-            browser: 'custom_browser.js',
+            browserConfig: 'custom_browser.js',
             config: 'custom_config.js',
             loadFiles: ['src/**/*.js',{pattern:'not-cached.js', nocache:true}, {pattern:'not-watched.js', watched:false}],
             packages: 'custom_packages/',

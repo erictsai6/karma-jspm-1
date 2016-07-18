@@ -21,5 +21,5 @@ gulp.task('default', function () {
     .pipe(uglify())
     .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('src/coverage/'));
+    .pipe(gulp.dest('src/files/'));
 });

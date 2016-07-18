@@ -1,0 +1,8 @@
+{
+  "description": "baseURL defined",
+  "jspm": {
+    "directories": {
+      "baseURL": "src/client"
+    }
+  }
+}

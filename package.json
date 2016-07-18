@@ -1,31 +1,31 @@
 {
-  "name": "karma-jspm",
-  "version": "2.2.0",
+  "name": "@uiuxengineering/karma-jspm",
+  "version": "2.2.1",
   "description": "Include jspm module loader for karma runs; allows dynamic loading of src and test files and modules",
   "main": "index.js",
   "keywords": [
     "karma-plugin",
     "karma-adapter",
-    "jspm"
+    "jspm",
+    "Angular2",
+    "coverage",
+    "SystemJS",
+    "jasmine",
+    "karma-coverage"
   ],
   "scripts": {
     "test": "cross-env JASMINE_CONFIG_PATH=test/jasmine.json jasmine 'test/**/*.spec.js'",
     "lint": "eslint **/*.js"
   },
   "author": {
-    "name": "Max Peterson",
-    "email": "maxwell.peterson@workiva.com"
+    "name": "Jerry Ofrta",
+    "email": "jerryorta.dev@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Max Peterson",
-      "email": "computmaxer@gmail.com"
-    }
-  ],
-  "license": "Apache-2.0",
+  "contributors": [],
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Workiva/karma-jspm.git"
+    "url": "git@github.com:UIUXEngineering/karma-jspm.git"
   },
   "dependencies": {
     "glob": "~3.2",
@@ -43,6 +43,7 @@
     "gulp-util": "^3.0.7",
     "istanbul": "^0.4.4",
     "jasmine": "^2.4.1",
+    "lodash": "^4.13.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
