@@ -1,6 +1,6 @@
 var path = require('path');
 var fs = require('fs');
-var CONS = require('./contants');
+var CONS = require('./constants');
 var _ = require('lodash');
 
 var pjson;

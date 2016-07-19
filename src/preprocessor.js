@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 // Coverage Preprocessor
 // =====================
 //
@@ -16,6 +18,14 @@ function createCoveragePreprocessor (logger, helper, basePath, reporters, covera
   var _ = helper._;
   var log = logger.create('preprocessor.coverage');
 
+  // if coverage reporter is not used, do not preprocess the files
+  if (!_.includes(reporters, 'jspm')) {
+    return function (content, _, done) {
+      done(content)
+    }
+  }
+
+  // match instrumentor coverage path key.
   basePath += '/';
 
   // Options
