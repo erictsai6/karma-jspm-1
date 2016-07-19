@@ -1,5 +1,5 @@
 (function() {
-  
+
   var helper, path, util, vm;
 
   vm = require('vm');
