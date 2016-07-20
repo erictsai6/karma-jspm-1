@@ -36,6 +36,7 @@
   "devDependencies": {
     "browserify": "^13.0.1",
     "cross-env": "^1.0.7",
+    "dateformat": "^1.0.12",
     "eslint": "^2.10.2",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
