@@ -9,6 +9,7 @@ There is no need to preprocess ( pre-transpile ) your code before
 running tests or to generate a coverage report. Your report may be
 remapped to the original TypeScript or ES6 source code.
 
+See a sample implementation of this plugin at [angular2-jspm-typescript-seed](https://github.com/UIUXEngineering/angular2-jspm-typescript-seed).
 
 ##Installation
 
