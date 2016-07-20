@@ -57,6 +57,9 @@ function initJspm(files, basePath, jspm, client, emitter) {
 
     // Adapters
     // -------
+
+    var defaultAdapter = __dirname + '/adapters/default-adapter.js';
+
     if(jspm.adapter !== undefined) {
 
         if (jspm.adapter === 'angular2') {
@@ -70,19 +73,16 @@ function initJspm(files, basePath, jspm, client, emitter) {
             /**
              * Angular test files may wrap tests in a function named 'main'
              */
-            if(!client.jspm.testWrapperFunctionName) {
-                client.jspm.testWrapperFunctionName = 'main';
-            }
+            client.jspm.testWrapperFunctionName = (jspm.testWrapperFunctionName) ? jspm.testWrapperFunctionName : 'main';
+
+            jspm.adapter = defaultAdapter;
 
         } else {
             jspm.adapter = path.normalize(basePath + '/' + jspm.adapter);
         }
     } else {
-        jspm.adapter = __dirname + '/adapters/default-adapter.js';
+        jspm.adapter = defaultAdapter;
     }
-
-
-    client.jspm.adapter = jspm.adapter;
 
     var packagesPath = path.normalize(basePath + '/' + jspm.packages + '/');
     var browserPath = path.normalize(basePath + '/' + jspm.browserConfig);

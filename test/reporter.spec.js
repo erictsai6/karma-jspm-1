@@ -448,6 +448,7 @@
         expect(options.args[1].watermarks.branches).toEqual(mockDefaultWatermarks.branches);
         expect(options.args[1].watermarks.functions).toEqual(mockDefaultWatermarks.functions);
         expect(options.args[1].watermarks.lines).toEqual(watermarks.lines);
+
       });
 
       it('should not write reports after disposing the collector', function() {
