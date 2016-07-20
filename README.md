@@ -53,7 +53,7 @@ config.set({
 ```
 
 ####loadFiles
-Required\s\s
+Required\\
 **Default**: *undefined*
 
 The `loadFiles` configuration tells karma-jspm which files should 
@@ -77,7 +77,7 @@ config.set({
 ```
 
 ####serveFiles
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 You may want to make additional files/a file pattern available for 
