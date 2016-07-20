@@ -10,7 +10,7 @@ running tests or to generate a coverage report. Your report may be
 remapped to the original TypeScript or ES6 source code.
 
 
-##Installation##
+##Installation
 
 Available in npm: `npm install karma-jspm --save-dev`
 
@@ -52,7 +52,7 @@ config.set({
 }
 ```
 
-####loadFiles####
+####loadFiles
 Required
 **Default**: *undefined*
 
@@ -76,7 +76,7 @@ config.set({
 }
 ```
 
-####serveFiles####
+####serveFiles
 Optional
 **Default**: *undefined*
 
@@ -100,7 +100,7 @@ config.set({
 
 For more complex architectures, additional configurations may be necessary.
 
-####config####
+####config
 Optional
 **Default**: *parsed from package.json*
 
@@ -120,7 +120,7 @@ config.set({
 }    
 ```
 
-####packages####
+####packages
 Optional
 **Default**: *parsed from package.json*
 
@@ -140,7 +140,7 @@ config.set({
 }    
 ```
 
-####browserConfig####
+####browserConfig
 *JSPM 0.17 Beta*
 Optional
 **Default**: *undefined*
@@ -159,7 +159,7 @@ config.set({
 }    
 ```
 
-####devConfig####
+####devConfig
 *JSPM 0.17 Beta*
 Optional
 **Default**: *undefined*
@@ -178,7 +178,7 @@ config.set({
 }    
 ```
 
-####nodeConfig####
+####nodeConfig
 *JSPM 0.17 Beta*
 Optional
 **Default**: *undefined*
@@ -197,7 +197,7 @@ config.set({
 }    
 ```
 
-####useBundles####
+####useBundles
 Optional
 **Default**: *false*
 
@@ -216,7 +216,7 @@ config.set({
 ```
 
 
-####paths####
+####paths
 Optional
 **Default**: *undefined*
 
@@ -235,7 +235,7 @@ jspm: {
 ```
 
 
-####stripExtension####
+####stripExtension
 Optional
 **Default**: *undefined*
 
@@ -248,7 +248,7 @@ jspm: {
 }
 ```
 
-####cachePackages####
+####cachePackages
 Optional
 **Default**: *undefined*
 
@@ -262,7 +262,7 @@ jspm: {
 }
 ```
 
-####adapter####
+####adapter
 Optional
 **Default**: *undefined*
 
@@ -275,7 +275,7 @@ jspm: {
 }
 ```
 
-####testWrapperFunction####
+####testWrapperFunction
 Optional
 **Default**: *undefined*
 
@@ -288,7 +288,7 @@ jspm: {
 }
 ```
 
-####preloadBySystemJS####
+####preloadBySystemJS
 Optional
 **Default**: *undefined*
 
@@ -318,7 +318,7 @@ jspm: {
 }
 ```
 
-###Code Coverage###
+###Code Coverage
 A coverage Instrumenter is provided with a SystemJS hook in the browser 
 using @guybedford's example from his [blog](http://guybedford.com/systemjs-mocha-istanbul). Similar
 to the karma-coverage plugin, you set the preprocessor to 'jspm'. This 
@@ -336,7 +336,7 @@ The reporter works the same as other karma reporters.
 reporters: ['jspm'],
 ```
 
-####remap####
+####remap
 Optional
 **Default**: *false*
 
@@ -375,9 +375,9 @@ coverageReporter: {
     }
 ```
 
-###Angular2 Configurations###
+###Angular2 Configurations
 
-####adapter####
+####adapter
 Required
 **Set to**: *'angular2'*
 
@@ -391,7 +391,7 @@ jspm: {
 }
 ```
 
-####testWrapperFunctionName####
+####testWrapperFunctionName
 Optional
 **Default**: *'main'*
 
@@ -406,7 +406,7 @@ jspm: {
 }
 ```
 
-####preloadBySystemJS####
+####preloadBySystemJS
 Optional
 **Default**: *see below*
 
