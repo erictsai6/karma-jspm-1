@@ -291,7 +291,7 @@ function is not desired.
 
 ```js
 jspm: {
-    testWrapperFunction: 'nameOfFunction'
+    testWrapperFunctionName: 'nameOfFunction'
 }
 ```
 
