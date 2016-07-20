@@ -33,7 +33,7 @@ exports.remapCoverage = function(coverage, originalSources) {
 
       sourceMap.sourcesContent = sourceMap.sourcesContent || [];
 
-      sourceMap.sources = sourceMap.sources.map((src, index) => {
+      sourceMap.sources = sourceMap.sources.map(function (src, index) {
         var sourcePath = path.relative(process.cwd(), path.resolve(path.dirname(name), sourceMap.sourceRoot || '.', src));
         if (originalSources[sourcePath] && !sourceMap.sourcesContent[index])
           sourceMap.sourcesContent[index] = originalSources[sourcePath].source;
