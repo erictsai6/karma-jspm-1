@@ -58,7 +58,7 @@ function initJspm(files, basePath, jspm, client, emitter) {
     // Adapters
     // -------
 
-    var defaultAdapter = __dirname + '/adapters/default-adapter.js';
+    var defaultAdapter = __dirname + '/files/default-adapter.js';
 
     if(jspm.adapter !== undefined) {
 
@@ -160,6 +160,7 @@ function initJspm(files, basePath, jspm, client, emitter) {
     );
     jspmPattern.watched = false;
     files.push(jspmPattern);
+
 }
 
 initJspm.$inject = [
