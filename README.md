@@ -53,7 +53,7 @@ config.set({
 ```
 
 ####loadFiles
-Required\\
+Required  
 **Default**: *undefined*
 
 The `loadFiles` configuration tells karma-jspm which files should 
@@ -101,7 +101,7 @@ config.set({
 For more complex architectures, additional configurations may be necessary.
 
 ####config
-Optional\s\s
+Optional  
 **Default**: *parsed from package.json*
 
 You may have named your jspm `config.js`. The package.json configuration
@@ -121,7 +121,7 @@ config.set({
 ```
 
 ####packages
-Optional\s\s
+Optional  
 **Default**: *parsed from package.json*
 
 You may have named your `jspm_packages` directory to something else. 
@@ -141,8 +141,8 @@ config.set({
 ```
 
 ####browserConfig
-*JSPM 0.17 Beta*\s\s
-Optional\s\s
+*JSPM 0.17 Beta*  
+Optional  
 **Default**: *undefined*
 
 For JSPM 0.17 Beta, you can to specify the `jspm.browser.js`.
@@ -160,8 +160,8 @@ config.set({
 ```
 
 ####devConfig
-*JSPM 0.17 Beta*\s\s
-Optional\s\s
+*JSPM 0.17 Beta*  
+Optional  
 **Default**: *undefined*
 
 For JSPM 0.17 Beta, you can to specify the `jspm.dev.js`.
@@ -179,8 +179,8 @@ config.set({
 ```
 
 ####nodeConfig
-*JSPM 0.17 Beta*\s\s
-Optional\s\s
+*JSPM 0.17 Beta*  
+Optional  
 **Default**: *undefined*
 
 For JSPM 0.17 Beta, you can to specify the `jspm.node.js` file.
@@ -198,7 +198,7 @@ config.set({
 ```
 
 ####useBundles
-Optional\s\s
+Optional  
 **Default**: *false*
 
 By default karma-jspm ignores jspm's bundles configuration. To re-enable 
@@ -217,7 +217,7 @@ config.set({
 
 
 ####paths
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 Depending on your framework and project structure it might be necessary 
@@ -236,7 +236,7 @@ jspm: {
 
 
 ####stripExtension
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 By default the plugin will strip the file extension of the js files. 
@@ -249,7 +249,7 @@ jspm: {
 ```
 
 ####cachePackages
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 Most of the time, you do not want to cache your entire jspm_packages 
@@ -263,7 +263,7 @@ jspm: {
 ```
 
 ####adapter
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 By default, an adapter implementing ```karma.start()``` is provided to 
@@ -276,7 +276,7 @@ jspm: {
 ```
 
 ####testWrapperFunction
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 Some test implementations require the tests ( describe blocks ) to be 
@@ -289,7 +289,7 @@ jspm: {
 ```
 
 ####preloadBySystemJS
-Optional\s\s
+Optional  
 **Default**: *undefined*
 
 SystemJS loads files from the ```jspm_packages``` directory ( or your 
@@ -337,7 +337,7 @@ reporters: ['jspm'],
 ```
 
 ####remap
-Optional\s\s
+Optional  
 **Default**: *false*
 
 Configure the output of the reports using coverageReporter property. Set
@@ -378,7 +378,7 @@ coverageReporter: {
 ###Angular2 Configurations
 
 ####adapter
-Required\s\s
+Required  
 **Set to**: *'angular2'*
 
 If you are using angular2, specify 'angular2' as your adapter, and an a 
@@ -392,7 +392,7 @@ jspm: {
 ```
 
 ####testWrapperFunctionName
-Optional\s\s
+Optional  
 **Default**: *'main'*
 
 Angular2 tests may implement a wrapper function. By default, the 
@@ -407,7 +407,7 @@ jspm: {
 ```
 
 ####preloadBySystemJS
-Optional\s\s
+Optional  
 **Default**: *see below*
 
 For Angular2 testing, SystemJS will automatically pre-load the following 
