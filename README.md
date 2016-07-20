@@ -31,11 +31,17 @@ Include this plugin in your frameworks:
 frameworks: ['jspm', 'jasmine'],
 ```
 
-Karma auto loads plugins unless you specify a plugins config. 
-If you have one, you'll also need to add it there:
+Because this plugin is published in the npm organization @uiuxengineering,
+you will have to require it directly in the plugins property of your
+karma config. Unfortunately, this means you will have to name all your
+plugins. Suggestions welcome to fix this.
 
 ```js
-plugins: ['karma-jspm', 'karma-phantomjs-launcher'],
+plugins: [
+      require('@uiuxengineering/karma-jspm'),
+      'karma-jasmine',
+      'karma-chrome-launcher'
+    ],
 ```
 
 Set ```basePath``` of your karma config to the the directory where
