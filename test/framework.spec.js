@@ -50,7 +50,7 @@
     });
 
     it('should add adapter.js to the top of the files array', function() {
-      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/src/adapters/default-adapter.js'));
+      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/src/files/default-adapter.js'));
       expect(files[5].included).toEqual(true);
     });
 
