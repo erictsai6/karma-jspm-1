@@ -13,7 +13,7 @@ See a sample implementation of this plugin at [angular2-jspm-typescript-seed](ht
 
 ##Installation
 
-Available in npm: `npm install karma-jspm --save-dev`
+Available in npm: `npm install @uiuxengineering/karma-jspm --save-dev`
 
 **This plugin assumes you are using jspm in your project.** You will 
 need to have a `config.js` in the root of your project (though this 
@@ -274,7 +274,9 @@ Optional
 **Default**: *undefined*
 
 By default, an adapter implementing ```karma.start()``` is provided to 
-launch unit tests. You may use a custom adapter.
+launch unit tests. Other plugins may override ```karma.start``` causing
+issues with this plugin. You may use a custom adapter to resolve these
+issues. See the provided [default adapter](https://github.com/UIUXEngineering/karma-jspm/blob/master/src/files/default-adapter.js#L151) for an example implementation:
 
 ```js
 jspm: {
