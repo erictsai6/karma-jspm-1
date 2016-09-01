@@ -130,9 +130,9 @@ function initJspm(files, basePath, jspm, client, emitter) {
     files.unshift(filePattern.createPattern(__dirname + '/files/instrumenter.js'));
 
     // SystemJS
-    files.unshift(filePattern.createPattern(__dirname + '/files/polyfills.js'));
-    files.unshift(filePattern.createPattern(getLoaderPath('system-polyfills.src')));
     files.unshift(filePattern.createPattern(getLoaderPath('system.src')));
+    files.unshift(filePattern.createPattern(getLoaderPath('system-polyfills.src')));
+    files.unshift(filePattern.createPattern(__dirname + '/files/polyfills.js'));
 
     // Loop through all of jspm.load_files and do two things
     // 1. Add all the files as "served" files to the files array
