@@ -30,6 +30,7 @@
   "dependencies": {
     "glob": "~3.2",
     "istanbul": "^0.4.4",
+    "lodash": "^4.13.1",
     "minimatch": "^3.0.2",
     "remap-istanbul": "^0.6.4"
   },
@@ -45,7 +46,6 @@
     "istanbul": "^0.4.4",
     "jasmine": "^2.4.1",
     "karma": "^1.1.1",
-    "lodash": "^4.13.1",
     "mocks": "0.0.15",
     "sinon": "^1.17.4",
     "vinyl-buffer": "^1.0.0",
