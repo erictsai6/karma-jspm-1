@@ -130,7 +130,7 @@ function initJspm(files, basePath, jspm, client, emitter) {
     files.unshift(filePattern.createPattern(__dirname + '/files/instrumenter.js'));
 
     // SystemJS
-    files.unshift(filePattern.createPattern(__dirname + '/files/systemjsKarmaFix.js'));
+    files.unshift(filePattern.createPattern(__dirname + '/files/polyfills.js'));
     files.unshift(filePattern.createPattern(getLoaderPath('system-polyfills.src')));
     files.unshift(filePattern.createPattern(getLoaderPath('system.src')));
 

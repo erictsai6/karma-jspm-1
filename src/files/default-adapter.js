@@ -1,14 +1,3 @@
-if (!Object.hasOwnProperty('name')) {
-    Object.defineProperty(Function.prototype, 'name', {
-        get: function() {
-            var matches = this.toString().match(/^\s*function\s*(\S*)\s*\(/);
-            var name = matches && matches.length > 1 ? matches[1] : "";
-            Object.defineProperty(this, 'name', {value: name});
-            return name;
-        }
-    });
-}
-
 (function(karma, System) {
 
     // ========================================
