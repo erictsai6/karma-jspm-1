@@ -3,7 +3,7 @@
  * @type {string[]}
  */
 module.exports = [
-  'es6-shim.js',
+  'es6-shim',
   'zone.js/dist/zone.js',
   '@angular/core/testing',
   '@angular/platform-browser-dynamic/testing',
