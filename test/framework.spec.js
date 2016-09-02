@@ -54,13 +54,18 @@
       expect(files[5].included).toEqual(true);
     });
 
-    it('should add systemjs-polyfills to the top of the files array', function() {
+    it('should add systemjs-polyfills to index 1 of the files array', function() {
       expect(normalPath(files[1].pattern)).toEqual(normalPath(basePath + '/custom_packages/system-polyfills.src.js'));
       expect(files[1].included).toEqual(true);
     });
 
-    it('should add systemjs to the top of the files array', function() {
-      expect(normalPath(files[0].pattern)).toEqual(normalPath(basePath + '/custom_packages/system.src.js'));
+    it('should add systemjs to index 2 of the files array', function() {
+      expect(normalPath(files[2].pattern)).toEqual(normalPath(basePath + '/custom_packages/system.src.js'));
+      expect(files[0].included).toEqual(true);
+    });
+
+    it('should add polyfills to index 0 of the files array', function() {
+      expect(normalPath(files[0].pattern)).toEqual(normalPath(basePath + '/src/files/polyfills.js'));
       expect(files[0].included).toEqual(true);
     });
 
