@@ -3,11 +3,11 @@
  * @type {string[]}
  */
 module.exports = [
+  'es6-shim.js',
   'zone.js/dist/zone.js',
   '@angular/core/testing',
   '@angular/platform-browser-dynamic/testing',
   'zone.js/dist/jasmine-patch.js',
   'zone.js/dist/async-test.js',
-  'zone.js/dist/fake-async-test.js',
-  'es6-shim'
+  'zone.js/dist/fake-async-test.js'
 ];
