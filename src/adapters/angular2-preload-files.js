@@ -5,8 +5,8 @@
 module.exports = [
   'es6-shim',
   'zone.js/dist/zone.js',
-  '@angular/core/testing',
-  '@angular/platform-browser-dynamic/testing',
+  '@angular/core/testing/index.js',
+  '@angular/platform-browser-dynamic/testing/index.js',
   'zone.js/dist/jasmine-patch.js',
   'zone.js/dist/async-test.js',
   'zone.js/dist/fake-async-test.js'
