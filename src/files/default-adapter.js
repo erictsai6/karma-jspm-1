@@ -12,7 +12,7 @@
           "or by running 'jspm dl-loader'.");
     }
 
-    System.config({ baseURL: 'base' });
+    // System.config({ baseURL: 'base' });
 
     var stripExtension = typeof karma.config.jspm.stripExtension === 'boolean' ? karma.config.jspm.stripExtension : true;
 
@@ -51,8 +51,9 @@
             return false;
         });
 
-        var angularTestingProvider;
-        var angularPlatformBrowserProvider;
+        var BrowserDynamicTestingModule;
+        var platformBrowserDynamicTesting;
+        var TestBed;
 
         var preloadPromiseChain = Promise.resolve();
 
@@ -66,12 +67,16 @@
 
                         return System['import'](moduleName).then(function(module) {
 
-                            if (module.hasOwnProperty('setBaseTestProviders')) {
-                                angularTestingProvider = module;
+                            if (module.hasOwnProperty('BrowserDynamicTestingModule')) {
+                              BrowserDynamicTestingModule = module['BrowserDynamicTestingModule'];
                             }
 
-                            if (module.hasOwnProperty('TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS')) {
-                                angularPlatformBrowserProvider = module;
+                            if (module.hasOwnProperty('platformBrowserDynamicTesting')) {
+                              platformBrowserDynamicTesting = module['platformBrowserDynamicTesting'];
+                            }
+
+                            if (module.hasOwnProperty('TestBed')) {
+                              TestBed = module['TestBed'];
                             }
 
                         });
@@ -86,9 +91,11 @@
           /**
            * If angular2 modules where loaded, set up angular2 testing
            */
-            if (angularTestingProvider && angularPlatformBrowserProvider) {
-                angularTestingProvider.setBaseTestProviders(angularPlatformBrowserProvider.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-                  angularPlatformBrowserProvider.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+            if (TestBed && BrowserDynamicTestingModule && platformBrowserDynamicTesting) {
+              TestBed.initTestEnvironment(
+                BrowserDynamicTestingModule,
+                platformBrowserDynamicTesting()
+              );
             }
 
             // Load everything specified in loadFiles in the specified order

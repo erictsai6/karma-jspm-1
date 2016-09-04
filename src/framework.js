@@ -103,6 +103,8 @@ function initJspm(files, basePath, jspm, client, emitter) {
         }
     }
 
+    files.unshift(filePattern.createPattern(jspm.adapter));
+
     // Needed for JSPM 0.17 beta
     if(jspm.nodeConfig) {
         files.unshift(filePattern.createPattern(nodePath));
@@ -122,8 +124,6 @@ function initJspm(files, basePath, jspm, client, emitter) {
           return filePattern.createPattern(configPath)
       })
     );
-
-    files.unshift(filePattern.createPattern(jspm.adapter));
 
     // Coverage
     files.unshift(filePattern.createPattern(__dirname + '/files/hookSystemJS.js'));
