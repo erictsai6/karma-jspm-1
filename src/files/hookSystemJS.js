@@ -43,6 +43,13 @@ var _originalSources = {};
           if (load.metadata.format == 'json' || load.metadata.format == 'defined' || load.metadata.loader && load.metadata.loaderModule.build === false)
             return source;
 
+          var name = load.address.substr(System.baseURL.length);
+
+          // exclude json files ( if load.metadata.format did not catch above
+          if (extension(name) == 'json' || extension(name) == 'xmp') {
+            return source;
+          }
+
           // excludes
           if (exclude && exclude(load.address))
             return source;
@@ -50,8 +57,6 @@ var _originalSources = {};
           // automatically exclude sources outside the baseURL
           if (load.address.substr(0, System.baseURL.length) != System.baseURL)
             return source;
-
-          var name = load.address.substr(System.baseURL.length);
 
           _originalSources[name] = {
             source: originalSource,
@@ -70,6 +75,10 @@ var _originalSources = {};
         });
     };
     loader.translate.coverageAttached = true;
+  }
+
+  function extension(fname) {
+    return fname.substr((~-fname.lastIndexOf(".") >>> 0) + 2);
   }
 
   window.hookSystemJS = hookSystemJS;
