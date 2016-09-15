@@ -1,5 +1,8 @@
 # karma-jspm  [![Build Status](https://travis-ci.org/UIUXEngineering/karma-jspm.svg?branch=master)](https://travis-ci.org/UIUXEngineering/karma-jspm)
 
+
+**This plugin can now support angular 2.0.0 and JSPM 0.17 beta**
+
 This plugin is originally a fork of [Workiva/karma-jspm](https://github.com/Workiva/karma-jspm). 
 Among the additional features, this version utilizes SystemJS to load, 
 transpile, run your tests, and to generate code coverage. Special configurations
@@ -20,7 +23,7 @@ need to have a `config.js` in the root of your project (though this
 is configurable) as well as a `jspm_packages` directory containing 
 systemjs and the es6-module-loader.
 
-**This plugin can now support JSPM 0.17 beta**
+
 ##Configuration##
 For simple architectures, minimal configuration is needed.
 
@@ -319,16 +322,17 @@ jspm: {
     preloadBySystemJS: [
                          // Polyfills
                          'es6-shim',
+                         'core-js/client/shim.min.js',
                          'reflect-metadata/Reflect.js',
                        
                          // Test Assistance
                          'zone.js/dist/zone.js',
                          'zone.js/dist/long-stack-trace-zone.js',
-                         'zone.js/dist/proxy.js',
-                         'zone.js/dist/sync-test.js',
-                         'zone.js/dist/jasmine-patch.js',
                          'zone.js/dist/async-test.js',
                          'zone.js/dist/fake-async-test.js',
+                         'zone.js/dist/sync-test.js',
+                         'zone.js/dist/proxy.js',
+                         'zone.js/dist/jasmine-patch.js',
                        
                          // TestBed.initTestEnvironment
                          '@angular/core/testing',
@@ -438,16 +442,17 @@ config.
 [
   // Polyfills
   'es6-shim',
+  'core-js/client/shim.min.js',
   'reflect-metadata/Reflect.js',
 
   // Test Assistance
   'zone.js/dist/zone.js',
   'zone.js/dist/long-stack-trace-zone.js',
-  'zone.js/dist/proxy.js',
-  'zone.js/dist/sync-test.js',
-  'zone.js/dist/jasmine-patch.js',
   'zone.js/dist/async-test.js',
   'zone.js/dist/fake-async-test.js',
+  'zone.js/dist/sync-test.js',
+  'zone.js/dist/proxy.js',
+  'zone.js/dist/jasmine-patch.js',
 
   // TestBed.initTestEnvironment
   '@angular/core/testing',
