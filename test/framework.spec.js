@@ -32,25 +32,25 @@
     });
 
     it('should add config.js to the top of the files array', function() {
-      expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
-      expect(files[6].included).toEqual(true);
+      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
+      expect(files[5].included).toEqual(true);
     });
 
     it('should add browser.js to the top of the files array', function() {
-      expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/custom_browser.js'));
-      expect(files[5].included).toEqual(true);
+      expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/custom_browser.js'));
+      expect(files[6].included).toEqual(true);
     });
 
     it('should support an array of config files', function() {
       jspm.config = ['custom_config.js', 'another_config.js'];
       files = [];
       initFramework(files, basePath, jspm, client, emitter);
-      expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
-      expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/another_config.js'));
+      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/custom_config.js'));
+      expect(normalPath(files[6].pattern)).toEqual(normalPath(basePath + '/another_config.js'));
     });
 
     it('should add adapter.js to the top of the files array', function() {
-      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/src/files/default-adapter.js'));
+      expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/src/files/default-adapter.js'));
       expect(files[5].included).toEqual(true);
     });
 
@@ -131,8 +131,8 @@
     });
 
     it('should add custom adapter.js to the top of the files array', function() {
-      expect(normalPath(files[5].pattern)).toEqual(normalPath(basePath + '/custom_adapter.js'));
-      expect(files[5].included).toEqual(true);
+      expect(normalPath(files[7].pattern)).toEqual(normalPath(basePath + '/custom_adapter.js'));
+      expect(files[7].included).toEqual(true);
     });
 
     it('should not apply a wrapper function', function() {
