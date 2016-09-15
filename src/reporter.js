@@ -13,6 +13,7 @@
 var path = require('path')
 var istanbul = require('istanbul')
 var minimatch = require('minimatch')
+var _ = require('lodash');
 
 var preprocessList = require('./coverage/preprocess-list.js');
 var remap = require('./coverage/remap-coverage');
@@ -213,7 +214,7 @@ var CoverageReporter = function (rootConfig, helper, logger, emitter) {
     if (browsers) {
       browsers.forEach(this.onBrowserStart.bind(this))
     }
-  }
+  };
 
   this.onBrowserStart = function (browser) {
     collectors[browser.id] = new istanbul.Collector()
@@ -221,7 +222,7 @@ var CoverageReporter = function (rootConfig, helper, logger, emitter) {
     if (!includeAllSources) return
 
     collectors[browser.id].add({})
-  }
+  };
 
   this.onBrowserComplete = function (browser, result) {
     var collector = collectors[browser.id]
@@ -231,14 +232,23 @@ var CoverageReporter = function (rootConfig, helper, logger, emitter) {
     if (!result || !result.coverage) return
 
     if (config.remap && result.coverage && result.coverage._originalSources) {
-      var _originalSources = result.coverage._originalSources;
+
+      var _originalSources = {};
+
+      /**
+       * path.normalize to set path for PC or MAC
+       */
+      _.each(result.coverage._originalSources, function(value, index) {
+        _originalSources[path.normalize(index)] = value;
+      });
+
       delete result.coverage._originalSources;
 
       var ppList = preprocessList.get();
 
       ppList.forEach(function(originalPath) {
         if (result.coverage.hasOwnProperty(originalPath)) {
-          coverage[originalPath] = result.coverage[originalPath];
+          coverage[path.normalize(originalPath)] = result.coverage[originalPath];
         }
       });
 
@@ -294,7 +304,7 @@ var CoverageReporter = function (rootConfig, helper, logger, emitter) {
         })
         var reporter = istanbul.Report.create(reporterConfig.type || 'html', options)
 
-         // If reporting to console or in-memory skip directory creation
+        // If reporting to console or in-memory skip directory creation
         var toDisk = !reporterConfig.type || !reporterConfig.type.match(/^(text|text-summary|in-memory)$/)
         var hasNoFile = _.isUndefined(reporterConfig.file)
 
@@ -318,8 +328,8 @@ var CoverageReporter = function (rootConfig, helper, logger, emitter) {
     if (pendingFileWritings) {
       fileWritingFinished = (
         typeof config._onExit === 'function'
-        ? (function (done) { return function () { config._onExit(done) } }(done))
-        : done
+          ? (function (done) { return function () { config._onExit(done) } }(done))
+          : done
       )
     } else {
       (typeof config._onExit === 'function' ? config._onExit(done) : done())

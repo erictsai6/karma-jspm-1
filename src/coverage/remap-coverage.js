@@ -18,7 +18,7 @@ exports.remapCoverage = function(coverage, originalSources) {
   var collector = remapIstanbul(coverage, {
     readFile: function(name) {
       return originalSources[name].source +
-        (originalSources[name] && originalSources[name].sourceMap ? '\n//# sourceMappingURL=' + name.split('/').pop() + '.map' : '');
+        (originalSources[name] && originalSources[name].sourceMap ? '\n//# sourceMappingURL=' + name.split(path.sep).pop() + '.map' : '');
     },
     readJSON: function(name) {
       var originalSourcesObj = originalSources[name.substr(0, name.length - 4)];
