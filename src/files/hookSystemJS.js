@@ -45,8 +45,8 @@ var _originalSources = {};
 
           var name = load.address.substr(System.baseURL.length);
 
-          // exclude json files ( if load.metadata.format did not catch above
-          if (extension(name) == 'json' || extension(name) == 'xmp') {
+          // exclude json files ( if load.metadata.format did not catch above )
+          if (extension(name) == 'json' || extension(name) == 'xml') {
             return source;
           }
 
