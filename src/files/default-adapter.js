@@ -44,12 +44,14 @@
         }
 
 
-        // hook coverage into SystemJS
-        window.hookSystemJS(System, function exclude(address) {
-            // files to ignore coverage
-            // return !address.match(/example-app|example-tests/);
-            return false;
-        });
+        // hook coverage into SystemJS - only if it is loaded in
+        if (window.hookSystemJS) {
+            window.hookSystemJS(System, function exclude(address) {
+                // files to ignore coverage
+                // return !address.match(/example-app|example-tests/);
+                return false;
+            });
+        }
 
         var BrowserDynamicTestingModule;
         var platformBrowserDynamicTesting;

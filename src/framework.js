@@ -25,7 +25,7 @@ function flatten(structure) {
     return [].concat.apply([], structure);
 }
 
-function initJspm(files, basePath, jspm, client, emitter) {
+function initJspm(files, basePath, jspm, client, coverageReporter, emitter) {
 
     // Initialize jspm config if it wasn't specified in karma.conf.js
     if(!jspm)
@@ -126,8 +126,10 @@ function initJspm(files, basePath, jspm, client, emitter) {
     );
 
     // Coverage
-    files.unshift(filePattern.createPattern(__dirname + '/files/hookSystemJS.js'));
-    files.unshift(filePattern.createPattern(__dirname + '/files/instrumenter.js'));
+    if (coverageReporter && coverageReporter.enabled) {
+        files.unshift(filePattern.createPattern(__dirname + '/files/hookSystemJS.js'));
+        files.unshift(filePattern.createPattern(__dirname + '/files/instrumenter.js'));
+    }
 
     // SystemJS
     files.unshift(filePattern.createPattern(getLoaderPath('system.src')));
@@ -168,6 +170,7 @@ initJspm.$inject = [
     'config.basePath',
     'config.jspm',
     'config.client',
+    'config.coverageReporter',
     'emitter'];
 
 module.exports = initJspm;

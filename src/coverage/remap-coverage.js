@@ -49,7 +49,20 @@ exports.remapCoverage = function(coverage, originalSources) {
   });
   var coverage = collector.getFinalCoverage();
   Object.keys(coverage).forEach(function(key) {
-    coverage[key].code = [coverage[key].code || originalSources[key].source];
+      var code = null;
+      if (coverage[key].code) {
+          code = coverage[key].code;
+      } else if (originalSources[key]) {
+          code = originalSources[key].source;
+      } else if (originalSources[key.replace(/.*http:\/localhost:8089\//, '')]) {
+          code = originalSources[key.replace(/.*http:\/localhost:8089\//, '')].source;
+      }
+
+      if (code) {
+          coverage[key].code = [code];
+      } else {
+          delete coverage[key];
+      }
   });
   return coverage;
 };

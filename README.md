@@ -1,4 +1,4 @@
-# karma-jspm  [![Build Status](https://travis-ci.org/UIUXEngineering/karma-jspm.svg?branch=master)](https://travis-ci.org/UIUXEngineering/karma-jspm)
+# karma-jspm-plus  [![Build Status](https://travis-ci.org/UIUXEngineering/karma-jspm.svg?branch=master)](https://travis-ci.org/UIUXEngineering/karma-jspm)
 
 
 **This plugin can now support angular 2.0.0 and JSPM 0.17 beta**
